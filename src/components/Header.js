@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Logo from "../assets/princess.svg";
+import Logo from "../assets/logo.svg";
 import iconDown from "../assets/icon-chevron-down.svg";
 import iconUp from "../assets/icon-chevron-up.svg";
 import elipsis from "../assets/icon-vertical-ellipsis.svg";
@@ -10,6 +10,9 @@ import AddEditBoardModal from "../modals/AddEditBoardModal";
 import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../modals/DeleteModal";
 import boardsSlice from "../redux/boardsSlice";
+
+import { BadgePlus } from 'lucide-react';
+import GlassButton from "./GlassButton";
 
 function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -53,14 +56,17 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
       <header className=" flex justify-between dark:text-white items-center  ">
         {/* Left Side  */}
         <div className="flex items-center space-x-2 md:space-x-4">
-      <img src={Logo} alt="Logo" className="h-6 w-6" />
-      <h3 className="md:text-4xl hidden md:inline-block font-bold font-['Fira_Code'] code-text">
-        Precious🐞
-      </h3>
+      <img src={Logo} alt="Logo" className="h-14 w-14 cursor-pointer" />
+
       <div className="flex items-center">
-        <h3 className="truncate max-w-[300px] md:text-2xl text-xl font-bold md:ml-20 font-['Fira_Code'] code-text">
+        {/* <h3 className="truncate max-w-[300px] rounded-md bg-red-400 p-3 md:text-2xl text-xl font-bold md:ml-20 font-['Fira_Code'] code-text">
           {board.name}
-        </h3>
+        </h3> */}
+
+<div >
+      <GlassButton board={board} />
+    </div>
+
         <img
           src={openDropdown ? iconUp : iconDown}
           alt="dropdown icon"
@@ -71,7 +77,9 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
     </div>
 
         {/* Right Side */}
-
+        <h3 className="md:text-2xl hidden md:inline-block font-bold font-['Fira_Code'] code-text">
+        Capitain001
+      </h3>
         <div className=" flex space-x-4 items-center md:space-x-6 ">
           <button
             className=" button hidden md:block "
@@ -79,7 +87,8 @@ function Header({ setIsBoardModalOpen, isBoardModalOpen }) {
               setIsTaskModalOpen((prevState) => !prevState);
             }}
           >
-            + Add New Task
+            <BadgePlus />
+            
           </button>
           <button
             onClick={() => {
